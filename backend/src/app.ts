@@ -4,7 +4,7 @@ import { Pool } from "pg";
 import { Sequelize } from "sequelize";
 
 const app = express();
-dotenv.config(); //Reads .env file and makes it accessible via process.env
+dotenv.config();
 
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {
   res.send("hi");
@@ -19,18 +19,11 @@ const sequelize = new Sequelize(
   process.env.DB_USER!,
   process.env.DB_PASSWORD!,
   {
-    host: "localhost:" + process.env.DB_PORT,
+    host: "postgres",
     dialect: "postgres",
+    port: Number(process.env.DB_PORT),
   }
 );
-
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: parseInt(process.env.DB_PORT || "5432"),
-});
 
 const connectToDB = async () => {
   try {

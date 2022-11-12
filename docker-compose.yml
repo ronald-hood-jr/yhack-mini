@@ -1,51 +1,37 @@
-version: "3.2"
+version: '3'
 services:
-  #nginx:
-  #container_name: nginx
-  #image: jonasal/nginx-certbot
-  #restart: always
-  #environment:
-  #- CERTBOT_EMAIL=ronaldhoodjr@gmail.com
-  #ports:
-  #- 80:80
-  #- 443:443
-  #volumes:
-  #- nginx_secrets:/etc/letsencrypt
-  #- ./user_conf.d:/etc/nginx/user_conf.d
-  #depends_on:
-  #- app
+  # Create frontend container
+  frontend: # Name of our service
+    build: ./frontend # path to dockerfile
+    ports: # Port binding to host from docker container
+      - "3000:3000" # Bind port 3000 of host to 3000 of container
+    container_name: frontend-docker
+    restart: always # What to do if container crashes
+    links:
+      - backend
 
-  api:
-    container_name: api
-    restart: always
-    build: ./db
+  # Create backend container
+  backend:
+    # Create backend container  
+    build: ./backend
     ports:
-      - ${PORT}:${PORT}
-    depends_on:
-      - db
-    volumes:
-      - .:/usr/src/app
+      - "${PORT}:${PORT}"
+    container_name: backend-docker
+    restart: always
+    links:
+      - postgres
 
-  db:
+  postgres:
     container_name: postgres
     image: postgres
     ports:
-      - "5433:${DB_PORT}"
+      - '5433:${DB_PORT}'
     volumes:
       - data:/data/db
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
 
-  app:
-    container_name: app
-    restart: always
-    build: ./app
-    ports:
-      - "3000:3000"
-    depends_on:
-      - api
+volumes: 
+ data: {}
 
-volumes:
-  nginx_secrets:
-  data: {}
