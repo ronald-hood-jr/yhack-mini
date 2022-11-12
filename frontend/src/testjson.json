@@ -1,0 +1,32 @@
+{
+  "leads": [
+    {
+      "Address": "142 Apple St",
+      "Owner": "Ronald",
+      "Phone": "111-111-1112",
+      "Email": "ronald@gmail.com",
+      "Link": "linktohouse.com"
+    },
+    {
+      "Address": "142 Apple St",
+      "Owner": "Ronald",
+      "Phone": "111-111-1112",
+      "Email": "ronald@gmail.com",
+      "Link": "linktohouse.com"
+    },
+    {
+      "Address": "142 Apple St",
+      "Owner": "Ronald",
+      "Phone": "111-111-1112",
+      "Email": "ronald@gmail.com",
+      "Link": "linktohouse.com"
+    },
+    {
+      "Address": "142 Apple St",
+      "Owner": "Ronald",
+      "Phone": "111-111-1112",
+      "Email": "ronald@gmail.com",
+      "Link": "linktohouse.com"
+    }
+  ]
+}
