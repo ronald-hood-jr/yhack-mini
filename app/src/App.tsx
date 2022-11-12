@@ -8,7 +8,12 @@ function App() {
   return (
     <div className='flex flex-col h-screen justify-between'>
       <Header/>
-      <Table/>
+      <div className="card m-10 mb-auto">
+        
+          <Table/>
+        
+      </div>
+      
       <Footer/>
     </div>
     

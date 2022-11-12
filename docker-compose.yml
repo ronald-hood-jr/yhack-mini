@@ -1,0 +1,51 @@
+version: "3.2"
+services:
+  #nginx:
+  #container_name: nginx
+  #image: jonasal/nginx-certbot
+  #restart: always
+  #environment:
+  #- CERTBOT_EMAIL=ronaldhoodjr@gmail.com
+  #ports:
+  #- 80:80
+  #- 443:443
+  #volumes:
+  #- nginx_secrets:/etc/letsencrypt
+  #- ./user_conf.d:/etc/nginx/user_conf.d
+  #depends_on:
+  #- app
+
+  api:
+    container_name: api
+    restart: always
+    build: ./db
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5433:${DB_PORT}"
+    volumes:
+      - data:/data/db
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+  app:
+    container_name: app
+    restart: always
+    build: ./app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  nginx_secrets:
+  data: {}
