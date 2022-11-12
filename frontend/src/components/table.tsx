@@ -1,9 +1,4 @@
 import React from 'react'
-
-/** type HeaderProps = {
-    title: string,
-    paragraph: string
-}**/
 import testjson from '../testjson.json'
 type Lead =  {
   Address: string;
