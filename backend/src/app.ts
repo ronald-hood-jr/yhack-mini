@@ -68,8 +68,8 @@ const syncLeads = async () => {
   const house1 = await Lead.create({
     address: "123 myHouse Ln",
     owner: "Ronald",
-    phone: "832-603-9998",
-    email: "ronald@gmail.com",
+    phone: "111-111-1112",
+    email: "r@gmail.com",
     link: "linktohouse.com",
   });
   console.log(house1 instanceof Lead);
